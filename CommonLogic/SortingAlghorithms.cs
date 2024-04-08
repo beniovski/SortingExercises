@@ -114,19 +114,16 @@ namespace CommonLogic
 
             for (int j = left; j < right; j++)
             {
-                // Use CompareTo for comparison, which works with IComparable
                 if (arr[j].CompareTo(pivot) <= 0)
                 {
                     i++;
 
-                    // Swapping elements
                     T temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
                 }
             }
 
-            // Swap arr[i+1] and arr[right] (or pivot)
             T temp1 = arr[i + 1];
             arr[i + 1] = arr[right];
             arr[right] = temp1;
@@ -146,13 +143,13 @@ namespace CommonLogic
             return (min, max);
         }
 
-        public static void BucketSort(int[] inputArray, int bucketSize)
+        public static void BucketSort(int[] inputArray)
         {
             int n = inputArray.Length;
             if (n <= 1) return;
 
             var (min, max) = FindMinMax(inputArray);
-            int bucketCount = Math.Max(1, n / 5); // Choose the number of buckets
+            int bucketCount = Math.Max(1, n / 5); 
             int bucketRange = (max - min) / bucketCount + 1;
 
             List<List<int>> buckets = new List<List<int>>();
@@ -161,14 +158,12 @@ namespace CommonLogic
                 buckets.Add(new List<int>());
             }
 
-            // Distribute input array values into buckets
             foreach (int value in inputArray)
             {
                 int bucketIndex = (value - min) / bucketRange;
                 buckets[bucketIndex].Add(value);
             }
 
-            // Sort each bucket and concatenate all buckets into the original array
             int index = 0;
             foreach (var bucket in buckets)
             {

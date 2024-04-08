@@ -2,7 +2,7 @@
 
 var array = Utils.GenerateArray(50);
 
-SortingAlghorithms.BucketSort(array,2);
+SortingAlghorithms.BucketSort(array);
 Utils.PrintTable(array);
 
 

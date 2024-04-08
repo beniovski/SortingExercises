@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.BubbleSort", "2.BubbleSor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "8.CarSort", "8.CarSort\8.CarSort.csproj", "{F422CD9B-EFC2-424F-B8A5-99B18A68E36F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1D2D874E-BCF0-40F7-B34A-3F27CDBF5199}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{F422CD9B-EFC2-424F-B8A5-99B18A68E36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F422CD9B-EFC2-424F-B8A5-99B18A68E36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F422CD9B-EFC2-424F-B8A5-99B18A68E36F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D2D874E-BCF0-40F7-B34A-3F27CDBF5199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D2D874E-BCF0-40F7-B34A-3F27CDBF5199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D2D874E-BCF0-40F7-B34A-3F27CDBF5199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D2D874E-BCF0-40F7-B34A-3F27CDBF5199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
