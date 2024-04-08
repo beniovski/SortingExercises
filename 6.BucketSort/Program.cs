@@ -1,8 +1,8 @@
 ﻿using CommonLogic;
 
-var array = Utils.GenerateArray(1000);
+var array = Utils.GenerateArray(50);
 
-SortingAlghorithms.BucketSort(array, array.Length-1);
+SortingAlghorithms.BucketSort(array,2);
 Utils.PrintTable(array);
 
 

@@ -1,4 +1,6 @@
-﻿namespace CommonLogic
+﻿using System.Diagnostics;
+
+namespace CommonLogic
 {
     public static class Utils
     {
@@ -10,7 +12,7 @@
 
             for(int i = 0; i < numberOfElements; i++)
             {
-                array[i] = random.Next(int.MinValue, int.MaxValue);
+                array[i] = random.Next(0, 1000);
             }
 
             return array;
@@ -100,6 +102,16 @@
             }
         }
 
+        public static void  countTimeExecution(Action actions)
+        {
+            var timer = new Stopwatch();
+            timer.Start();
+            actions.Invoke();
+
+            timer.Stop();
+            Console.WriteLine(timer.Elapsed.TotalSeconds.ToString());
+
+        }
 
     }
 }

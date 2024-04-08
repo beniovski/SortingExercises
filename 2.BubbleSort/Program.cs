@@ -2,8 +2,9 @@
 using CommonLogic;
 
 
-var array = Utils.GenerateArray(1000);
+var array = Utils.GenerateArray(100000);
 SortingAlghorithms.BubbleSort(array);
+
 Utils.PrintTable(array);
 
 

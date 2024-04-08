@@ -134,36 +134,48 @@ namespace CommonLogic
             return i + 1;
         }
 
+        private static (int min, int max) FindMinMax(int[] arr)
+        {
+            int min = arr[0];
+            int max = arr[0];
+            foreach (int value in arr)
+            {
+                if (value < min) min = value;
+                if (value > max) max = value;
+            }
+            return (min, max);
+        }
+
         public static void BucketSort(int[] inputArray, int bucketSize)
         {
-            if (inputArray.Length == 0) return;
-            int minValue = inputArray[0];
-            int maxValue = inputArray[0];
-            foreach (int value in inputArray)
-            {
-                if (value < minValue) minValue = value;
-                else if (value > maxValue) maxValue = value;
-            }
+            int n = inputArray.Length;
+            if (n <= 1) return;
 
-            int bucketCount = (maxValue - minValue) / bucketSize + 1;
+            var (min, max) = FindMinMax(inputArray);
+            int bucketCount = Math.Max(1, n / 5); // Choose the number of buckets
+            int bucketRange = (max - min) / bucketCount + 1;
+
             List<List<int>> buckets = new List<List<int>>();
             for (int i = 0; i < bucketCount; i++)
             {
                 buckets.Add(new List<int>());
             }
 
+            // Distribute input array values into buckets
             foreach (int value in inputArray)
             {
-                buckets[(value - minValue) / bucketSize].Add(value);
+                int bucketIndex = (value - min) / bucketRange;
+                buckets[bucketIndex].Add(value);
             }
 
-            int currentIndex = 0;
-            foreach (List<int> bucket in buckets)
+            // Sort each bucket and concatenate all buckets into the original array
+            int index = 0;
+            foreach (var bucket in buckets)
             {
-                bucket.Sort(); 
-                foreach (int value in bucket)
+                bucket.Sort();
+                foreach (var value in bucket)
                 {
-                    inputArray[currentIndex++] = value;
+                    inputArray[index++] = value;
                 }
             }
         }
