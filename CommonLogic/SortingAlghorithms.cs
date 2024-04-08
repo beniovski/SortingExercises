@@ -26,23 +26,23 @@ namespace CommonLogic
             }
         }
 
-        public static void InsertionSort(int[] inputArray)
+        public static void InsertionSort<T>(T[] inputArray) where T : IComparable
         {
             for (int i = 1; i < inputArray.Length; i++)
             {
-                int key = inputArray[i];
+                T key = inputArray[i];
                 int j = i - 1;
 
-                while (j >= 0 && inputArray[j] > key)
+                while (j >= 0 && inputArray[j].CompareTo(key) > 0)
                 {
                     inputArray[j + 1] = inputArray[j];
-                    j = j - 1;
+                    j--;
                 }
                 inputArray[j + 1] = key;
             }
         }
 
-        public static void MergeSort(int[] array, int left, int right)
+        public static void MergeSort<T>(T[] array, int left, int right) where T : IComparable
         {
             if (left < right)
             {
@@ -53,86 +53,81 @@ namespace CommonLogic
             }
         }
 
-        private static int[] Merge(int[] array, int left, int middle, int right)
+        private static void Merge<T>(T[] array, int left, int middle, int right) where T : IComparable
         {
             int n1 = middle - left + 1;
             int n2 = right - middle;
 
-            int[] L = new int[n1];
-            int[] R = new int[n2];
+            T[] L = new T[n1];
+            T[] R = new T[n2];
 
-            for (int i = 0; i < n1; ++i)
-                L[i] = array[left + i];
-            for (int j = 0; j < n2; ++j)
-                R[j] = array[middle + 1 + j];
+            Array.Copy(array, left, L, 0, n1);
+            Array.Copy(array, middle + 1, R, 0, n2);
 
-
-            int iIndex = 0, jIndex = 0;
-
+            int i = 0, j = 0;
             int k = left;
-            while (iIndex < n1 && jIndex < n2)
+            while (i < n1 && j < n2)
             {
-                if (L[iIndex] <= R[jIndex])
+                if (L[i].CompareTo(R[j]) <= 0)
                 {
-                    array[k] = L[iIndex];
-                    iIndex++;
+                    array[k] = L[i];
+                    i++;
                 }
                 else
                 {
-                    array[k] = R[jIndex];
-                    jIndex++;
+                    array[k] = R[j];
+                    j++;
                 }
                 k++;
             }
 
-            while (iIndex < n1)
+            while (i < n1)
             {
-                array[k] = L[iIndex];
-                iIndex++;
+                array[k] = L[i];
+                i++;
                 k++;
             }
 
-            while (jIndex < n2)
+            while (j < n2)
             {
-                array[k] = R[jIndex];
-                jIndex++;
+                array[k] = R[j];
+                j++;
                 k++;
             }
-            return array;
         }
 
-        public static void QuickSort(int[] arr, int left, int right)
+        public static void QuickSort<T>(T[] arr, int left, int right) where T : IComparable
         {
             if (left < right)
             {
                 int pivotIndex = Partition(arr, left, right);
 
-                QuickSort(arr, left, pivotIndex - 1); // Before pivot
-                QuickSort(arr, pivotIndex + 1, right); // After pivot
+                QuickSort(arr, left, pivotIndex - 1);
+                QuickSort(arr, pivotIndex + 1, right);
             }
         }
 
-        private static int Partition(int[] arr, int left, int right)
+        private static int Partition<T>(T[] arr, int left, int right) where T : IComparable
         {
-            int pivot = arr[right];
-            int i = (left - 1); // Index of smaller element
+            T pivot = arr[right];
+            int i = left - 1;
 
             for (int j = left; j < right; j++)
             {
-                // If current element is smaller than or equal to pivot
-                if (arr[j] <= pivot)
+                // Use CompareTo for comparison, which works with IComparable
+                if (arr[j].CompareTo(pivot) <= 0)
                 {
                     i++;
 
-                    // swap arr[i] and arr[j]
-                    int temp = arr[i];
+                    // Swapping elements
+                    T temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
                 }
             }
 
-            // swap arr[i+1] and arr[high] (or pivot)
-            int temp1 = arr[i + 1];
+            // Swap arr[i+1] and arr[right] (or pivot)
+            T temp1 = arr[i + 1];
             arr[i + 1] = arr[right];
             arr[right] = temp1;
 
